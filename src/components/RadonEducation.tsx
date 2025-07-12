@@ -1,29 +1,54 @@
 
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { AlertTriangle, Home, TrendingDown } from 'lucide-react';
 
-const RadonEducation = () => {
-  const stats = [
-    {
-      icon: AlertTriangle,
-      number: '#2',
-      label: 'Cause of lung cancer',
-      description: 'Radon is the second leading cause of lung cancer after smoking'
-    },
-    {
-      icon: Home,
-      number: '1 in 3',
-      label: 'MN homes test high',
-      description: 'Minnesota has some of the highest radon levels in the nation'
-    },
-    {
-      icon: TrendingDown,
-      number: '95%+',
-      label: 'Risk reduction',
-      description: 'Professional mitigation reduces radon levels by 95% or more'
+const stats = [
+  {
+    icon: AlertTriangle,
+    number: '#2',
+    label: 'Cause of lung cancer',
+    description: 'Radon is the second leading cause of lung cancer after smoking'
+  },
+  {
+    icon: Home,
+    number: '1 in 3',
+    label: 'MN homes test high',
+    description: 'Minnesota has some of the highest radon levels in the nation'
+  },
+  {
+    icon: TrendingDown,
+    number: '95%+',
+    label: 'Risk reduction',
+    description: 'Professional mitigation reduces radon levels by 95% or more'
+  }
+];
+
+const RadonEducation = memo(() => {
+  const scrollToQuote = useCallback(() => {
+    const element = document.querySelector('#quote');
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        duration: 0.6
+      }
     }
-  ];
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  };
 
   return (
     <section id="education" className="py-20 bg-gradient-to-br from-[#7A0019] to-[#5A0013] text-white">
@@ -32,8 +57,8 @@ const RadonEducation = () => {
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-100px" }}
         >
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
             Why Radon Mitigation Matters
@@ -44,16 +69,20 @@ const RadonEducation = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <motion.div 
+          className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
               className="text-center p-8 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2, duration: 0.8 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05 }}
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
               <div className="flex items-center justify-center w-20 h-20 bg-white/20 rounded-full mb-6 mx-auto">
                 <stat.icon className="w-10 h-10 text-white" />
@@ -72,24 +101,21 @@ const RadonEducation = () => {
               </p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <motion.div
           className="text-center mt-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
           viewport={{ once: true }}
         >
           <p className="text-lg text-white/90 mb-6">
             Don't wait to protect your family's health
           </p>
           <button
-            onClick={() => {
-              const element = document.querySelector('#quote');
-              if (element) element.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="bg-white text-[#7A0019] hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-all duration-200 hover:shadow-lg"
+            onClick={scrollToQuote}
+            className="bg-white text-[#7A0019] hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-all duration-200 hover:shadow-lg hover:scale-105"
           >
             Get Your Free Quote Today
           </button>
@@ -97,6 +123,8 @@ const RadonEducation = () => {
       </div>
     </section>
   );
-};
+});
+
+RadonEducation.displayName = 'RadonEducation';
 
 export default RadonEducation;

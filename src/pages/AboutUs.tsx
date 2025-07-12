@@ -1,52 +1,71 @@
 
-import React from 'react';
+import React, { memo } from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Heart, CheckCircle, Users, HandHeart } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const AboutUs = () => {
-  const values = [
-    {
-      icon: Heart,
-      title: 'Health First',
-      description: 'Your health and safety are our number 1 priority. Always. Each system will be designed and implemented to bring radon levels down to the lowest possible level.'
-    },
-    {
-      icon: Shield,
-      title: 'Compliance',
-      description: 'We ensure each mitigation solution meets or exceeds state and local code requirements.'
-    },
-    {
-      icon: CheckCircle,
-      title: 'Honesty',
-      description: 'We will never oversell, cut corners, or leave a job unfinished. You will always get straightforward and transparent pricing, timely customer service, and a mitigation system that you can trust to keep you and your family healthy.'
-    },
-    {
-      icon: Users,
-      title: 'Empowerment',
-      description: 'As a Homeowner, we want you to feel informed and educated on the risks and dangers of Radon exposure. We\'ll partner with you to create a solution that makes your home\'s air as safe as possible.'
-    },
-    {
-      icon: HandHeart,
-      title: 'Community Focused',
-      description: 'As Minnesota residents, we want to help make our state a better place. This means providing top quality radon mitigation solutions to our customers, giving back to our community through service opportunities, and donating 10% of our profits to local organizations that provide essential services to our friends and neighbors.'
+const values = [
+  {
+    icon: Heart,
+    title: 'Health First',
+    description: 'Your health and safety are our number 1 priority. Always. Each system will be designed and implemented to bring radon levels down to the lowest possible level.'
+  },
+  {
+    icon: Shield,
+    title: 'Compliance',
+    description: 'We ensure each mitigation solution meets or exceeds state and local code requirements.'
+  },
+  {
+    icon: CheckCircle,
+    title: 'Honesty',
+    description: 'We will never oversell, cut corners, or leave a job unfinished. You will always get straightforward and transparent pricing, timely customer service, and a mitigation system that you can trust to keep you and your family healthy.'
+  },
+  {
+    icon: Users,
+    title: 'Empowerment',
+    description: 'As a Homeowner, we want you to feel informed and educated on the risks and dangers of Radon exposure. We\'ll partner with you to create a solution that makes your home\'s air as safe as possible.'
+  },
+  {
+    icon: HandHeart,
+    title: 'Community Focused',
+    description: 'As Minnesota residents, we want to help make our state a better place. This means providing top quality radon mitigation solutions to our customers, giving back to our community through service opportunities, and donating 10% of our profits to local organizations that provide essential services to our friends and neighbors.'
+  }
+];
+
+const AboutUs = memo(() => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        duration: 0.6
+      }
     }
-  ];
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
       
       <main className="pt-20">
-        {/* Hero Section */}
         <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
           <div className="container mx-auto px-4">
             <motion.div
               className="text-center mb-16"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.6 }}
             >
               <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
                 About ClearHaus
@@ -56,12 +75,11 @@ const AboutUs = () => {
               </p>
             </motion.div>
 
-            {/* Bio Section - Placeholder */}
             <motion.div
               className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8 mb-16"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
             >
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div>
@@ -82,15 +100,14 @@ const AboutUs = () => {
           </div>
         </section>
 
-        {/* Values Section */}
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
             <motion.div
               className="text-center mb-16"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true, margin: "-100px" }}
             >
               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
                 Our Values
@@ -100,16 +117,20 @@ const AboutUs = () => {
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <motion.div 
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+            >
               {values.map((value, index) => (
                 <motion.div
                   key={value.title}
                   className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.8 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -5 }}
+                  variants={itemVariants}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
                   <div className="flex items-center justify-center w-16 h-16 bg-[#7A0019]/10 rounded-full mb-6 mx-auto">
                     <value.icon className="w-8 h-8 text-[#7A0019]" />
@@ -122,7 +143,7 @@ const AboutUs = () => {
                   </p>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
       </main>
@@ -130,6 +151,8 @@ const AboutUs = () => {
       <Footer />
     </div>
   );
-};
+});
+
+AboutUs.displayName = 'AboutUs';
 
 export default AboutUs;

@@ -1,7 +1,6 @@
 
-import React from 'react';
+import React, { memo } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import {
@@ -11,58 +10,58 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 
-const FAQ = () => {
-  const faqs = [
-    {
-      question: "What is radon and why is it dangerous?",
-      answer: "Radon is a naturally occurring radioactive gas that comes from the breakdown of uranium in soil, rock, and water. It's colorless, odorless, and tasteless, making it impossible to detect without testing. Radon is the second leading cause of lung cancer after smoking and is responsible for about 21,000 lung cancer deaths per year in the United States."
-    },
-    {
-      question: "How does radon get into my home?",
-      answer: "Radon enters homes through cracks in foundations, gaps around pipes, construction joints, and other openings that contact the soil. It can accumulate to dangerous levels in enclosed spaces, particularly basements and lower levels of homes."
-    },
-    {
-      question: "How do I know if my home has high radon levels?",
-      answer: "The only way to know if your home has elevated radon levels is through testing. The EPA recommends testing all homes below the third floor. You can use short-term test kits (2-90 days) or long-term test kits (more than 90 days). Professional testing is also available and recommended for real estate transactions."
-    },
-    {
-      question: "What radon level requires mitigation?",
-      answer: "The EPA recommends taking action to reduce radon levels if your home tests at 4 pCi/L (picocuries per liter) or higher. However, because there is no safe level of radon, the EPA also suggests considering mitigation for levels between 2-4 pCi/L."
-    },
-    {
-      question: "How effective is radon mitigation?",
-      answer: "Professional radon mitigation systems are highly effective, typically reducing radon levels by 90-99%. Most systems can reduce levels to below 2 pCi/L, and many achieve levels below 1 pCi/L."
-    },
-    {
-      question: "How long does radon mitigation installation take?",
-      answer: "Most residential radon mitigation systems can be installed in 4-8 hours, typically completed in one day. More complex installations or unique home designs may require additional time. We'll provide a clear timeline during your consultation."
-    },
-    {
-      question: "Will a radon mitigation system affect my home's appearance?",
-      answer: "We work carefully to minimize visual impact while ensuring system effectiveness. The system includes a fan and piping that extends above your roofline, but we route pipes as discretely as possible and can discuss aesthetic options during your consultation."
-    },
-    {
-      question: "How much does radon mitigation cost in Minnesota?",
-      answer: "Costs vary based on your home's foundation type, size, and complexity. Basement systems typically range from $1,200-$1,800, while crawlspace systems range from $1,500-$2,200. We provide transparent, upfront pricing with no hidden fees."
-    },
-    {
-      question: "Do radon mitigation systems require maintenance?",
-      answer: "Radon systems require minimal maintenance. We recommend testing your home every 2 years after installation to ensure the system is working effectively. The fan typically lasts 10-15 years and should be checked periodically to ensure it's running properly."
-    },
-    {
-      question: "Are you licensed and insured?",
-      answer: "Yes, ClearHaus is fully licensed, insured, and NRPP (National Radon Proficiency Program) certified. All our installations meet or exceed Minnesota state and local building codes."
-    },
-    {
-      question: "What areas in Minnesota do you serve?",
-      answer: "We primarily serve the Greater Twin Cities area and surrounding communities. Contact us to confirm service availability in your specific location."
-    },
-    {
-      question: "Do you offer financing options?",
-      answer: "Yes, we offer various financing options to make radon mitigation affordable for Minnesota families. Contact us to discuss payment plans and financing options that work for your budget."
-    }
-  ];
+const faqs = [
+  {
+    question: "What is radon and why is it dangerous?",
+    answer: "Radon is a naturally occurring radioactive gas that comes from the breakdown of uranium in soil, rock, and water. It's colorless, odorless, and tasteless, making it impossible to detect without testing. Radon is the second leading cause of lung cancer after smoking and is responsible for about 21,000 lung cancer deaths per year in the United States."
+  },
+  {
+    question: "How does radon get into my home?",
+    answer: "Radon enters homes through cracks in foundations, gaps around pipes, construction joints, and other openings that contact the soil. It can accumulate to dangerous levels in enclosed spaces, particularly basements and lower levels of homes."
+  },
+  {
+    question: "How do I know if my home has high radon levels?",
+    answer: "The only way to know if your home has elevated radon levels is through testing. The EPA recommends testing all homes below the third floor. You can use short-term test kits (2-90 days) or long-term test kits (more than 90 days). Professional testing is also available and recommended for real estate transactions."
+  },
+  {
+    question: "What radon level requires mitigation?",
+    answer: "The EPA recommends taking action to reduce radon levels if your home tests at 4 pCi/L (picocuries per liter) or higher. However, because there is no safe level of radon, the EPA also suggests considering mitigation for levels between 2-4 pCi/L."
+  },
+  {
+    question: "How effective is radon mitigation?",
+    answer: "Professional radon mitigation systems are highly effective, typically reducing radon levels by 90-99%. Most systems can reduce levels to below 2 pCi/L, and many achieve levels below 1 pCi/L."
+  },
+  {
+    question: "How long does radon mitigation installation take?",
+    answer: "Most residential radon mitigation systems can be installed in 4-8 hours, typically completed in one day. More complex installations or unique home designs may require additional time. We'll provide a clear timeline during your consultation."
+  },
+  {
+    question: "Will a radon mitigation system affect my home's appearance?",
+    answer: "We work carefully to minimize visual impact while ensuring system effectiveness. The system includes a fan and piping that extends above your roofline, but we route pipes as discretely as possible and can discuss aesthetic options during your consultation."
+  },
+  {
+    question: "How much does radon mitigation cost in Minnesota?",
+    answer: "Costs vary based on your home's foundation type, size, and complexity. Basement systems typically range from $1,200-$1,800, while crawlspace systems range from $1,500-$2,200. We provide transparent, upfront pricing with no hidden fees."
+  },
+  {
+    question: "Do radon mitigation systems require maintenance?",
+    answer: "Radon systems require minimal maintenance. We recommend testing your home every 2 years after installation to ensure the system is working effectively. The fan typically lasts 10-15 years and should be checked periodically to ensure it's running properly."
+  },
+  {
+    question: "Are you licensed and insured?",
+    answer: "Yes, ClearHaus is fully licensed, insured, and NRPP (National Radon Proficiency Program) certified. All our installations meet or exceed Minnesota state and local building codes."
+  },
+  {
+    question: "What areas in Minnesota do you serve?",
+    answer: "We primarily serve the Greater Twin Cities area and surrounding communities. Contact us to confirm service availability in your specific location."
+  },
+  {
+    question: "Do you offer financing options?",
+    answer: "Yes, we offer various financing options to make radon mitigation affordable for Minnesota families. Contact us to discuss payment plans and financing options that work for your budget."
+  }
+];
 
+const FAQ = memo(() => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -74,7 +73,7 @@ const FAQ = () => {
               className="text-center mb-16"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.6 }}
             >
               <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
                 Frequently Asked Questions
@@ -88,7 +87,7 @@ const FAQ = () => {
               className="max-w-4xl mx-auto"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
             >
               <Accordion type="single" collapsible className="space-y-4">
                 {faqs.map((faq, index) => (
@@ -112,12 +111,11 @@ const FAQ = () => {
               </Accordion>
             </motion.div>
 
-            {/* CTA Section */}
             <motion.div
               className="text-center mt-16"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
               <div className="bg-gradient-to-br from-[#7A0019] to-[#5A0013] rounded-2xl p-8 text-white">
@@ -150,6 +148,8 @@ const FAQ = () => {
       <Footer />
     </div>
   );
-};
+});
+
+FAQ.displayName = 'FAQ';
 
 export default FAQ;

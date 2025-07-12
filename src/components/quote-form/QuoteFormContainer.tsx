@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
@@ -22,25 +22,25 @@ interface FormData {
   additionalInfo: string;
 }
 
-const QuoteFormContainer = () => {
+const QuoteFormContainer = memo(() => {
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm<FormData>();
   const { toast } = useToast();
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = useCallback((data: FormData) => {
     console.log('Form submitted:', data);
     toast({
       title: "Quote Request Submitted!",
       description: "We'll contact you within 24 hours to schedule your free consultation.",
     });
     reset();
-  };
+  }, [toast, reset]);
 
   return (
     <motion.div
       initial={{ opacity: 0, x: 30 }}
       whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true, margin: "-50px" }}
     >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-gray-50 rounded-xl p-8">
         <PersonalInfoFields register={register} errors={errors} />
@@ -71,6 +71,8 @@ const QuoteFormContainer = () => {
       </form>
     </motion.div>
   );
-};
+});
+
+QuoteFormContainer.displayName = 'QuoteFormContainer';
 
 export default QuoteFormContainer;
