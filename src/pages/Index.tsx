@@ -1,12 +1,28 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import Header from '../components/Header';
+import Hero from '../components/Hero';
+import HowItWorks from '../components/HowItWorks';
+import TrustSection from '../components/TrustSection';
+import PricingSection from '../components/PricingSection';
+import RadonEducation from '../components/RadonEducation';
+import QuoteForm from '../components/QuoteForm';
+import Footer from '../components/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-white">
+      <Header />
+      <main>
+        <Hero />
+        <HowItWorks />
+        <TrustSection />
+        <RadonEducation />
+        <PricingSection />
+        <QuoteForm />
+      </main>
+      <Footer />
     </div>
   );
 };
