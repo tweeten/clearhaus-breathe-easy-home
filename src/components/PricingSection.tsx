@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Check, ArrowRight } from 'lucide-react';
@@ -37,8 +36,8 @@ const PricingSection = () => {
       popular: true
     },
     {
-      name: 'Contact Us',
-      price: 'Contact us for a custom solution',
+      name: 'Complex/Multi-Level',
+      price: 'Contact Us',
       description: 'Custom solutions for unique homes',
       features: [
         'Multiple extraction points',
