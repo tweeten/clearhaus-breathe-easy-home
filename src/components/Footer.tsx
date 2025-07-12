@@ -7,14 +7,18 @@ import { Button } from '@/components/ui/button';
 
 const Footer = () => {
   const quickLinks = [
-    { label: 'Why Radon?', href: '#education' },
+    { label: 'Why Mitigate?', href: '#education' },
     { label: 'Our Process', href: '#how-it-works' },
     { label: 'Pricing', href: '#pricing' },
     { label: 'Get Quote', href: '#quote' },
-    { label: 'FAQ', href: '#faq' },
+    { label: 'FAQ', href: '/faq' },
   ];
 
   const scrollToSection = (href: string) => {
+    if (href.startsWith('/')) {
+      window.location.href = href;
+      return;
+    }
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -48,11 +52,11 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center">
                 <Phone className="w-5 h-5 text-[#7A0019] mr-3" />
-                <span>(612) 555-CLEAR</span>
+                <span>(641) 251-4510</span>
               </div>
               <div className="flex items-center">
                 <Mail className="w-5 h-5 text-[#7A0019] mr-3" />
-                <span>info@clearhaus.com</span>
+                <span>tyler@clearhausmn.com</span>
               </div>
               <div className="flex items-center">
                 <MapPin className="w-5 h-5 text-[#7A0019] mr-3" />

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Check, ArrowRight } from 'lucide-react';
@@ -6,21 +5,6 @@ import { Button } from '@/components/ui/button';
 
 const PricingSection = () => {
   const pricingTiers = [
-    {
-      name: 'Basement System',
-      price: '$1,200 - $1,800',
-      description: 'Standard basement radon mitigation system',
-      features: [
-        'Sub-slab depressurization system',
-        'PVC pipe installation',
-        'Radon fan (3" or 4")',
-        'Electrical connection',
-        'System labeling',
-        'Post-installation testing',
-        '5-year warranty'
-      ],
-      popular: false
-    },
     {
       name: 'Crawlspace System',
       price: '$1,500 - $2,200',
@@ -34,11 +18,26 @@ const PricingSection = () => {
         'Moisture control integration',
         'Extended warranty'
       ],
+      popular: false
+    },
+    {
+      name: 'Basement System',
+      price: '$1,200 - $1,800',
+      description: 'Standard basement radon mitigation system',
+      features: [
+        'Sub-slab depressurization system',
+        'PVC pipe installation',
+        'Radon fan (3" or 4")',
+        'Electrical connection',
+        'System labeling',
+        'Post-installation testing',
+        '5-year warranty'
+      ],
       popular: true
     },
     {
       name: 'Complex/Multi-Level',
-      price: '$2,000 - $3,500',
+      price: 'Contact us for a custom solution',
       description: 'Custom solutions for unique homes',
       features: [
         'Multiple extraction points',
@@ -120,11 +119,7 @@ const PricingSection = () => {
 
                 <Button
                   onClick={scrollToQuote}
-                  className={`w-full py-3 rounded-lg transition-all duration-200 ${
-                    tier.popular
-                      ? 'bg-[#7A0019] hover:bg-[#5A0013] text-white'
-                      : 'bg-gray-100 hover:bg-gray-200 text-gray-900 hover:text-[#7A0019]'
-                  }`}
+                  className="w-full py-3 rounded-lg transition-all duration-200 bg-[#7A0019] hover:bg-[#5A0013] text-white"
                 >
                   Get Custom Quote
                   <ArrowRight className="w-4 h-4 ml-2" />

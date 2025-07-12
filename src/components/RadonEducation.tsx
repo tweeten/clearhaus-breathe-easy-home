@@ -36,7 +36,7 @@ const RadonEducation = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            Why Radon Matters
+            Why Radon Mitigation Matters
           </h2>
           <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
             Radon is a colorless, odorless gas that poses serious health risks. 

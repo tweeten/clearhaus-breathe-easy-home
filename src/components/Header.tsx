@@ -3,10 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,14 +19,19 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { label: 'Why Radon?', href: '#education' },
+    { label: 'Why Mitigate?', href: '#education' },
     { label: 'Our Process', href: '#how-it-works' },
     { label: 'Residential Solutions', href: '#pricing' },
+    { label: 'About Us', href: '/about', isLink: true },
+    { label: 'FAQ', href: '/faq', isLink: true },
     { label: 'Get a Quote', href: '#quote' },
-    { label: 'Contact', href: '#contact' },
   ];
 
   const scrollToSection = (href: string) => {
+    if (location.pathname !== '/') {
+      window.location.href = '/' + href;
+      return;
+    }
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -32,10 +39,18 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const handleNavClick = (item: any) => {
+    if (item.isLink) {
+      setIsMobileMenuOpen(false);
+    } else {
+      scrollToSection(item.href);
+    }
+  };
+
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
+        isScrolled ? 'bg-background shadow-lg' : 'bg-background/95 backdrop-blur-sm'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -44,24 +59,34 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
             <img
               src="/lovable-uploads/b18fb7f5-c1bf-41eb-bc1d-aa27627e4b5c.png"
               alt="ClearHaus Logo"
-              className="h-10 w-auto"
+              className="h-12 w-auto"
             />
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => scrollToSection(item.href)}
-                className="text-gray-700 hover:text-[#7A0019] transition-colors duration-200 font-medium"
-              >
-                {item.label}
-              </button>
+              item.isLink ? (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className="text-gray-700 hover:text-[#7A0019] transition-colors duration-200 font-medium"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <button
+                  key={item.label}
+                  onClick={() => handleNavClick(item)}
+                  className="text-gray-700 hover:text-[#7A0019] transition-colors duration-200 font-medium"
+                >
+                  {item.label}
+                </button>
+              )
             ))}
           </nav>
 
@@ -98,13 +123,24 @@ const Header = () => {
           >
             <nav className="flex flex-col space-y-4 pt-4">
               {navItems.map((item) => (
-                <button
-                  key={item.label}
-                  onClick={() => scrollToSection(item.href)}
-                  className="text-left text-gray-700 hover:text-[#7A0019] transition-colors duration-200 font-medium"
-                >
-                  {item.label}
-                </button>
+                item.isLink ? (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-left text-gray-700 hover:text-[#7A0019] transition-colors duration-200 font-medium"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <button
+                    key={item.label}
+                    onClick={() => handleNavClick(item)}
+                    className="text-left text-gray-700 hover:text-[#7A0019] transition-colors duration-200 font-medium"
+                  >
+                    {item.label}
+                  </button>
+                )
               ))}
               <Button
                 onClick={() => scrollToSection('#quote')}
