@@ -3,12 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,7 +25,6 @@ const Header = () => {
     { label: 'Residential Solutions', href: '#pricing' },
     { label: 'About Us', href: '/about', isLink: true },
     { label: 'FAQ', href: '/faq', isLink: true },
-    { label: 'Get a Quote', href: '#quote' },
   ];
 
   const scrollToSection = (href: string) => {
@@ -41,6 +41,14 @@ const Header = () => {
 
   const handleNavClick = (item: any) => {
     if (item.isLink) {
+      if (item.href === '/about') {
+        navigate('/about');
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 100);
+      } else {
+        navigate(item.href);
+      }
       setIsMobileMenuOpen(false);
     } else {
       scrollToSection(item.href);
@@ -71,13 +79,13 @@ const Header = () => {
           <nav className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
               item.isLink ? (
-                <Link
+                <button
                   key={item.label}
-                  to={item.href}
+                  onClick={() => handleNavClick(item)}
                   className="text-gray-700 hover:text-[#7A0019] transition-colors duration-200 font-medium"
                 >
                   {item.label}
-                </Link>
+                </button>
               ) : (
                 <button
                   key={item.label}
@@ -123,24 +131,13 @@ const Header = () => {
           >
             <nav className="flex flex-col space-y-4 pt-4">
               {navItems.map((item) => (
-                item.isLink ? (
-                  <Link
-                    key={item.label}
-                    to={item.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-left text-gray-700 hover:text-[#7A0019] transition-colors duration-200 font-medium"
-                  >
-                    {item.label}
-                  </Link>
-                ) : (
-                  <button
-                    key={item.label}
-                    onClick={() => handleNavClick(item)}
-                    className="text-left text-gray-700 hover:text-[#7A0019] transition-colors duration-200 font-medium"
-                  >
-                    {item.label}
-                  </button>
-                )
+                <button
+                  key={item.label}
+                  onClick={() => handleNavClick(item)}
+                  className="text-left text-gray-700 hover:text-[#7A0019] transition-colors duration-200 font-medium"
+                >
+                  {item.label}
+                </button>
               ))}
               <Button
                 onClick={() => scrollToSection('#quote')}

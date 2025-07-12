@@ -19,11 +19,12 @@ interface FormData {
   zipCode: string;
   radonLevel: string;
   foundationType: string;
+  radonTesting: string;
   additionalInfo: string;
 }
 
 const QuoteForm = () => {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>();
+  const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm<FormData>();
   const { toast } = useToast();
 
   const onSubmit = (data: FormData) => {
@@ -99,11 +100,11 @@ const QuoteForm = () => {
                 <div className="space-y-3">
                   <div className="flex items-center">
                     <Phone className="w-5 h-5 text-[#7A0019] mr-3" />
-                    <span className="text-gray-700">(612) 555-CLEAR</span>
+                    <span className="text-gray-700">(641) 251-4510</span>
                   </div>
                   <div className="flex items-center">
                     <Mail className="w-5 h-5 text-[#7A0019] mr-3" />
-                    <span className="text-gray-700">info@clearhaus.com</span>
+                    <span className="text-gray-700">tyler@clearhausmn.com</span>
                   </div>
                   <div className="flex items-center">
                     <MapPin className="w-5 h-5 text-[#7A0019] mr-3" />
@@ -212,7 +213,7 @@ const QuoteForm = () => {
                   
                   <div>
                     <Label htmlFor="foundationType">Foundation Type</Label>
-                    <Select>
+                    <Select onValueChange={(value) => setValue('foundationType', value)}>
                       <SelectTrigger className="mt-1">
                         <SelectValue placeholder="Select foundation type" />
                       </SelectTrigger>
@@ -225,6 +226,20 @@ const QuoteForm = () => {
                       </SelectContent>
                     </Select>
                   </div>
+                </div>
+
+                <div>
+                  <Label htmlFor="radonTesting">If Radon level unknown, would you like us to test it?</Label>
+                  <Select onValueChange={(value) => setValue('radonTesting', value)}>
+                    <SelectTrigger className="mt-1">
+                      <SelectValue placeholder="Select an option" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="yes">Yes, please test it</SelectItem>
+                      <SelectItem value="no">No, I'll test it myself</SelectItem>
+                      <SelectItem value="already-tested">Already tested</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div>
