@@ -34,7 +34,8 @@ const Header = memo(() => {
   const navItems = [
     { label: 'Why Mitigate?', href: '#education' },
     { label: 'Our Process', href: '#how-it-works' },
-    { label: 'Residential Solutions', href: '#pricing' },
+    { label: 'Pricing', href: '#pricing' },
+    { label: 'Get a Quote', href: '#quote' },
     { label: 'About Us', href: '/about', isLink: true },
     { label: 'FAQ', href: '/faq', isLink: true },
   ];
@@ -67,6 +68,18 @@ const Header = memo(() => {
     }
   }, [navigate, scrollToSection]);
 
+  const handleLogoClick = useCallback(() => {
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    setIsMobileMenuOpen(false);
+  }, [location.pathname, navigate]);
+
   const toggleMobileMenu = useCallback(() => {
     setIsMobileMenuOpen(prev => !prev);
   }, []);
@@ -80,22 +93,25 @@ const Header = memo(() => {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-4 py-1 sm:py-2">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+          <button
+            onClick={handleLogoClick}
+            className="flex items-center space-x-2 sm:space-x-3 hover:opacity-80 transition-opacity"
+          >
             <img
-              src="/lovable-uploads/b18fb7f5-c1bf-41eb-bc1d-aa27627e4b5c.png"
+              src="/lovable-uploads/b18fb7f5-c1bf-41eb-bc1d-aa27627e4b5c_processed.png"
               alt="ClearHaus Logo"
-              className="h-12 w-auto"
+              className="h-8 w-auto sm:h-10 md:h-12 lg:h-14"
             />
-          </Link>
+          </button>
 
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navItems.map((item) => (
               <button
                 key={item.label}
                 onClick={() => handleNavClick(item)}
-                className="text-gray-700 hover:text-[#7A0019] transition-colors duration-200 font-medium"
+                className="text-gray-700 hover:text-[#7A0019] transition-colors duration-200 font-medium text-sm xl:text-base"
               >
                 {item.label}
               </button>

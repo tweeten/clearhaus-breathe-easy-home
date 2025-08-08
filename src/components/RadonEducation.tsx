@@ -54,7 +54,7 @@ const RadonEducation = memo(() => {
     <section id="education" className="py-20 bg-gradient-to-br from-[#7A0019] to-[#5A0013] text-white">
       <div className="container mx-auto px-4">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -110,15 +110,6 @@ const RadonEducation = memo(() => {
           transition={{ delay: 0.4, duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <p className="text-lg text-white/90 mb-6">
-            Don't wait to protect your family's health
-          </p>
-          <button
-            onClick={scrollToQuote}
-            className="bg-white text-[#7A0019] hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-all duration-200 hover:shadow-lg hover:scale-105"
-          >
-            Get Your Free Quote Today
-          </button>
         </motion.div>
       </div>
     </section>

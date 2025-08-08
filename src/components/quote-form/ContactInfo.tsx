@@ -54,10 +54,6 @@ const ContactInfo = () => {
             <Mail className="w-5 h-5 text-[#7A0019] mr-3" />
             <span className="text-gray-700">tyler@clearhausmn.com</span>
           </div>
-          <div className="flex items-center">
-            <MapPin className="w-5 h-5 text-[#7A0019] mr-3" />
-            <span className="text-gray-700">Serving Greater Twin Cities</span>
-          </div>
         </div>
       </div>
     </motion.div>

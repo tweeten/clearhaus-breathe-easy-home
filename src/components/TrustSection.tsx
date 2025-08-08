@@ -1,7 +1,7 @@
 
 import React, { memo } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Award, Users, Star } from 'lucide-react';
+import { Shield, Award, Users } from 'lucide-react';
 
 const trustPoints = [
   {
@@ -18,27 +18,6 @@ const trustPoints = [
     icon: Users,
     title: 'Code Compliant',
     description: 'All installations meet Minnesota building codes'
-  }
-];
-
-const testimonials = [
-  {
-    name: 'Sarah Johnson',
-    location: 'Minnetonka, MN',
-    text: 'ClearHaus made the entire process seamless. Professional, thorough, and gave us complete peace of mind.',
-    rating: 5
-  },
-  {
-    name: 'Mike Peterson',
-    location: 'Edina, MN',
-    text: 'Excellent work and fair pricing. Our radon levels dropped from 8.2 to 0.7 pCi/L. Highly recommend!',
-    rating: 5
-  },
-  {
-    name: 'Lisa Chen',
-    location: 'Plymouth, MN',
-    text: 'Quick response, professional installation, and great follow-up service. Worth every penny for our family\'s health.',
-    rating: 5
   }
 ];
 
@@ -67,7 +46,6 @@ const TrustSection = memo(() => {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <motion.div
-          className="mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -104,53 +82,6 @@ const TrustSection = memo(() => {
                 <p className="text-gray-600">
                   {point.description}
                 </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
-              What Our Customers Say
-            </h3>
-            <p className="text-lg text-gray-600">
-              Real experiences from Minnesota homeowners
-            </p>
-          </div>
-
-          <motion.div 
-            className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-          >
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.name}
-                className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all duration-300"
-                variants={itemVariants}
-                whileHover={{ y: -5, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-4 italic">
-                  "{testimonial.text}"
-                </p>
-                <div>
-                  <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                  <p className="text-sm text-gray-500">{testimonial.location}</p>
-                </div>
               </motion.div>
             ))}
           </motion.div>

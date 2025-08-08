@@ -6,39 +6,41 @@ import { Button } from '@/components/ui/button';
 const PricingSection = () => {
   const pricingTiers = [
     {
-      name: 'Crawlspace System',
-      price: '$1,500 - $2,200',
-      description: 'Specialized crawlspace mitigation solution',
-      features: [
-        'Crawlspace encapsulation prep',
-        'Sub-membrane depressurization',
-        'Heavy-duty vapor barrier',
-        'Sealed penetrations',
-        'High-capacity radon fan',
-        'Moisture control integration',
-        'Extended warranty'
-      ],
-      popular: false
-    },
-    {
-      name: 'Basement System',
-      price: '$1,200 - $1,800',
-      description: 'Standard basement radon mitigation system',
+      name: 'Mitigation System, Single Family Home',
+      price: '$1,500 - $2,000',
+      description: 'Standard radon mitigation system installed on the lowest level of your home',
       features: [
         'Sub-slab depressurization system',
-        'PVC pipe installation',
-        'Radon fan (3" or 4")',
+        'Schedule 40PVC pipe installation',
+        'Basic Radon fan (3" or 4")',
         'Electrical connection',
         'System labeling',
         'Post-installation testing',
-        '5-year warranty'
+        'Permit Fees Included'
       ],
-      popular: true
+      popular: false
     },
+    
     {
-      name: 'Complex/Multi-Level',
+      name: 'Mitigation System, Multi-Family Home',
+      price: '$2,000 - $3,000',
+      description: 'Specialized multi-family radon mitigation solutions',
+      features: [
+        'Sub-slab depressurization system',
+        'Schedule 40PVC pipe installation',
+        'High Performance Radon Fan',
+        'Electrical connection',
+        'System labeling',
+        'Post-installation testing',
+        'Permit Fees Included'
+      ],
+      popular: false
+    },
+
+    {
+      name: 'Commercial Radon Mitigation Systems',
       price: 'Contact Us',
-      description: 'Custom solutions for unique homes',
+      description: 'Custom solutions for commercial applications',
       features: [
         'Multiple extraction points',
         'Advanced routing systems',
@@ -61,18 +63,60 @@ const PricingSection = () => {
     <section id="pricing" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900">
             Transparent Pricing
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             No hidden fees, no surprises. Professional radon mitigation pricing that fits your needs and budget.
           </p>
+        </motion.div>
+
+        <motion.div
+          className="text-center bg-white rounded-2xl p-8 shadow-lg max-w-4xl mx-auto mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            Every Installation Includes:
+          </h3>
+          <div className="grid md:grid-cols-2 gap-4 text-left">
+            <ul className="space-y-2">
+              <li className="flex items-center">
+                <Check className="w-4 h-4 text-[#7A0019] mr-2" />
+                <span>Free initial consultation</span>
+              </li>
+              <li className="flex items-center">
+                <Check className="w-4 h-4 text-[#7A0019] mr-2" />
+                <span>Post-installation testing</span>
+              </li>
+              <li className="flex items-center">
+                <Check className="w-4 h-4 text-[#7A0019] mr-2" />
+                <span>System monitoring gauge</span>
+              </li>
+            </ul>
+            <ul className="space-y-2">
+              <li className="flex items-center">
+                <Check className="w-4 h-4 text-[#7A0019] mr-2" />
+                <span>Warranty coverage</span>
+              </li>
+              <li className="flex items-center">
+                <Check className="w-4 h-4 text-[#7A0019] mr-2" />
+                <span>Code-compliant installation</span>
+              </li>
+              <li className="flex items-center">
+                <Check className="w-4 h-4 text-[#7A0019] mr-2" />
+                <span>Ongoing support</span>
+              </li>
+            </ul>
+          </div>
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
@@ -121,55 +165,13 @@ const PricingSection = () => {
                   onClick={scrollToQuote}
                   className="w-full py-3 rounded-lg transition-all duration-200 bg-[#7A0019] hover:bg-[#5A0013] text-white"
                 >
-                  Get Custom Quote
+                  Get Quote
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </div>
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          className="text-center bg-white rounded-2xl p-8 shadow-lg max-w-4xl mx-auto"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            Every Installation Includes:
-          </h3>
-          <div className="grid md:grid-cols-2 gap-4 text-left">
-            <ul className="space-y-2">
-              <li className="flex items-center">
-                <Check className="w-4 h-4 text-[#7A0019] mr-2" />
-                <span>Free initial consultation</span>
-              </li>
-              <li className="flex items-center">
-                <Check className="w-4 h-4 text-[#7A0019] mr-2" />
-                <span>Post-installation testing</span>
-              </li>
-              <li className="flex items-center">
-                <Check className="w-4 h-4 text-[#7A0019] mr-2" />
-                <span>System monitoring gauge</span>
-              </li>
-            </ul>
-            <ul className="space-y-2">
-              <li className="flex items-center">
-                <Check className="w-4 h-4 text-[#7A0019] mr-2" />
-                <span>Warranty coverage</span>
-              </li>
-              <li className="flex items-center">
-                <Check className="w-4 h-4 text-[#7A0019] mr-2" />
-                <span>Code-compliant installation</span>
-              </li>
-              <li className="flex items-center">
-                <Check className="w-4 h-4 text-[#7A0019] mr-2" />
-                <span>Ongoing support</span>
-              </li>
-            </ul>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

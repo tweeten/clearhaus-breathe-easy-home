@@ -33,7 +33,7 @@ const Hero = memo(() => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-white overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-32 h-32 bg-[#7A0019]/5 rounded-full blur-xl"></div>
@@ -59,15 +59,9 @@ const Hero = memo(() => {
             </motion.div>
             
             <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-              Breathe easy in a house{' '}
-              <span className="text-[#7A0019] relative">
-                clear of Radon
-                <motion.div
-                  className="absolute -bottom-2 left-0 right-0 h-1 bg-[#7A0019]/20 rounded-full"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
-                />
+              ClearHaus,{' '}
+              <span className="text-[#7A0019]">
+                making the air in your home healthier
               </span>
             </h1>
           </motion.div>
@@ -86,16 +80,9 @@ const Hero = memo(() => {
           >
             <Button
               onClick={() => scrollToSection('#quote')}
-              className="bg-[#7A0019] hover:bg-[#5A0013] text-white px-8 py-4 text-lg rounded-lg transition-all duration-200 hover:shadow-xl hover:scale-105"
+              className="bg-[#7A0019] text-[#FFFFFF] hover:bg-[#7A0019] px-8 py-4 rounded-lg font-semibold transition-all duration-200 hover:shadow-lg hover:scale-105 border-2 border-[#7A0019]"
             >
-              Get a Free Quote
-            </Button>
-            <Button
-              onClick={() => scrollToSection('#how-it-works')}
-              variant="outline"
-              className="border-2 border-[#7A0019] text-[#7A0019] hover:bg-[#7A0019] hover:text-white px-8 py-4 text-lg rounded-lg transition-all duration-200"
-            >
-              How It Works
+              Get Your Free Quote Today
             </Button>
           </motion.div>
 
